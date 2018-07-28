@@ -2,9 +2,9 @@ require './lib/loja_virtual'
 
 biblioteca = Biblioteca.new
 
-teste_e_design = Livro.new "Mauricio Aniche", "123454", 247, 60.9, :testes
-web_design_responsivo = Livro.new "Tárcio Zemel", "452565", 189, 67.9, :front_end
-jsf_e_jpa = Livro.new "Gilliard Cordeiro", "543465", 234, 64.9, :frameworks_mvc
+teste_e_design = Livro.new "TDD", "Mauricio Aniche", "123454", 247, 60.9, :testes
+web_design_responsivo = Livro.new "Design Responsivo", "Tárcio Zemel", "452565", 189, 67.9, :front_end
+# jsf_e_jpa = Livro.new "Java Web", "Gilliard Cordeiro", "543465", 234, 64.9, :frameworks_mvc
 
 # hash = {
 #   "123454" => teste_e_design,
@@ -56,8 +56,33 @@ biblioteca.adiciona web_design_responsivo
 #   p numero
 # end
 
-livros = Set.new [teste_e_design, web_design_responsivo, teste_e_design]
+# livros = Set.new [teste_e_design, web_design_responsivo, teste_e_design]
 
-for livro in livros
-  p livro
+# for livro in livros
+#   p livro
+# end
+
+# Cap05 - Ruby e a programação funcional
+# biblioteca.livros_por_categoria :testes do |livro|
+#   p livro.autor
+# end
+
+# biblioteca.livros_por_categoria :testes
+
+# relatorio = Relatorio.new biblioteca
+# p relatorio.titulos
+# p relatorio.total
+
+# imprime_livro_no_console = Proc.new do |livro|
+#   p livro.autor
+# end
+
+imprime_livro_no_console = lambda do |livro|
+  p livro.autor
 end
+
+biblioteca.livros_por_categoria :testes, &imprime_livro_no_console
+
+# biblioteca.livros_por_categoria :testes do |livro|
+#   p livro.autor
+# end
